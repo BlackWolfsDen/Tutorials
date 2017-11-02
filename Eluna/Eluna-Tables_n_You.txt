@@ -1,0 +1,694 @@
+--[[
+Lua Tables n You. A basic Tables tutorial.
+
+By slp13at420/Grumbo/BlackWolf
+
+Thanks to Rochet2 for teaching me tables :)
+
+
+What is a table? and how do I use them?
+
+you have 2 ways to store data. 1 variable, 2 table.
+
+with a variable you can store a single data entry. So it is limited to 
+only retuning the same data over and over until it is changed. and a variable return speed is slower than a table.
+
+With a table you can store massive amounts of data in RAM and be able to access a specific data entry quicker.
+But how do you access a specific data entry? whell thats where the address key's comes into play.
+when you know how to navigate to the address of the data you whant you will recieve the data 
+you want over and over until it gets changed.
+What..?..
+An address consists of the table name and a single or set of 'keys' or' addresses'.
+Each key may have sub-keys, and those sub-keys may have sub-keys so on n so forth.
+but lets just start with a simple single dimention or a table with 1 level of keys.
+]]--
+
+--[[
+In these examples I will use the `print` command to `call` for data from the table and post it in 
+the console window when Lua_Scripts load.
+I will also use a separator with example title for more clarity.
+]]--
+
+--[[
+in the first example I will show how to define a table and populate it with data entries.
+]]--
+
+local tableA = {}; -- here I define the table or give it existance.
+
+tableA = {					-- here I am populating 4 keys with data. no comma for the last entry.
+			[1] = 100,
+			[2] = 150,
+			[3] = 200,
+			[4] = 250
+};
+
+--[[
+So now I have a simple table of data assigned to 4 keys. key 1 = 100, key 2 = 150, key 3 = 200, key 4 = 250.
+I want to see what data is stored at key 3.
+so I will use the 'print' command to `call` and post the data at key 3 by using the address or key's to navigate to the right data.
+]]--
+
+print("----------------");
+print("Example 1 tableA");
+
+print(tableA[3]); -- I am using the table name and the address or key i want to see.
+
+
+--[[
+So now i should see a random number 200 show up in the console window when Lua files are loaded.
+Now lets post all of them out of order lol
+]]--
+
+print("----------------");
+print("Example 2 tableA");
+
+print(tableA[1]); -- I am using the table name and the address or key i want to see.
+print(tableA[4]); -- I am using the table name and the address or key i want to see.
+print(tableA[2]); -- I am using the table name and the address or key i want to see.
+
+
+--[[
+So now when Lua scripts load i should see
+200
+100
+250
+150
+post in the console window.
+so by using the address key i was able to access multiple data from a single table.
+But you said i could change it?..
+as long as you know the address of the data you want to change you can change it.
+In this example i will show how to change address key 2 from 150 to 132.
+]]--
+
+tableA[2] = 132; -- Here I am updating the stored value to 132.
+
+print("----------------");
+print("Example 3 tableA");
+
+print(tableA[2]); -- Here i want to see the value stored to address key [2]
+
+--[[
+So now i will see the value 132 post to the console during startup. 
+Just like a variable but with an address key to pinpoint the exact data you want to change.
+]]--
+
+--[[
+You can also store strings to an address key.
+In the next example I will change address key's 2 and 4 to strings and post them.
+]]--
+
+tableA[2] = "Hello"; -- Here I am updating the stored value to 'Hello'.
+tableA[4] = "World"; -- Here I am updating the stored value to 'World'.
+
+print("----------------");
+print("Example 4 tableA");
+
+print(tableA[2]);
+print(tableA[4]);
+print(tableA[1]);
+print(tableA[3]);
+
+--[[
+Now I should see:
+Hello
+World
+100
+200
+post during startup.
+]]--
+
+--[[
+You can also store the value from a variable to an address key.
+in the next example i will give value to a variable then change 
+the value stored to address key 1 and 3 to the value of the 2 variables I create
+then post them again.
+]]--
+
+local variableA = "How";
+local variableB = "Are";
+
+tableA[1] = variableA;
+tableA[3] = variableB;
+
+print("----------------");
+print("Example 5 tableA");
+
+print(tableA[2]);
+print(tableA[4]);
+print(tableA[1]);
+print(tableA[3]);
+
+--[[
+Now I will see:
+Hello
+World
+How
+Are
+Post during startup.
+but i need to complete the sentence.So i will add a new key 
+to the allready defined 'tableA' addressed with key 5.
+]]--
+
+tableA[5] = "You";
+
+print("----------------");
+print("Example 6 tableA");
+
+print(tableA[2]);
+print(tableA[4]);
+print(tableA[1]);
+print(tableA[3]);
+print(tableA[5]);
+
+--[[
+Now we will see
+Hello
+World
+How
+Are
+You
+post during startup.
+]]--
+
+--[[
+So now we can see that we can store both int's and strings in a single table.
+But I have seen tables without address keys listed..?..
+Yes., if keys aren't applied then the system will auto apply ascending numerical values
+for the address keys.
+in this next example i will define a new table 'tableB' but i wont use address keys but
+allow the system to apply them instead.
+]]--
+
+
+local tableB = {}; -- here I define the new table to work with.
+
+tableB = {
+			123,
+			456,
+			789,
+			"I",
+			"AM",
+			"Fine"
+};
+
+--[[
+ok so i defined a new table 'tableB' with 6 entries of either strings or int's.
+So now the system should auto apply an ascending numerical address key to each entry(1 to 6).
+So lets see what is in address key's 4, 5 and 6.
+]]--
+
+print("----------------");
+print("Example 7 tableB");
+
+print(tableB[4]);
+print(tableB[5]);
+print(tableB[6]);
+
+--[[
+Now we will see
+I
+Am
+Fine
+post during startup.
+But what about those tables that are done within 1 line of code?
+yes you can consolodate it into a 1 line but never really recommended
+since it is harder to read and decypher address key's.
+but in this next example i will show how to do a 1 liner table 'tableC'.
+]]--
+
+local tableC = {};
+
+tableC = {987, 654, "And", 321, "You?"};
+
+--[[
+So now The system again will auto assign an ascending numerical key to each entry.
+so now we have 5 address key's and i want to post:
+And
+You?
+so i will print address key's 3 and 5.
+]]--
+
+print("----------------");
+print("Example 8 tableC");
+
+print(tableC[3]);
+print(tableC[5]);
+
+--[[
+Using 1 line tables can get complicated really quick.
+Most ppl prefer to use exploded tables with indentation as 
+shown using 'tableA' and 'tableB'.
+especialy when we get into multi-dimension tables as i am about to show you.
+in this next example i will define and populate it with data.
+]]--
+
+local tableD = {};
+
+tableD = {
+		[1] = {
+				[1] = "World",
+				[2] = "Hello"
+		},
+		[2] = {
+				[1] = "Are",
+				[2] = "You",
+				[3] = "How"
+		},
+		[3] = {
+				[1] = "Am",
+				[2] = "I",
+				[3] = "Fine"
+		},
+		[4] = {
+				[1] = "You?",
+				[2] = "And"
+		};
+};
+
+--[[
+So now 'tableD' has 'layers' or `levels` of address keys.
+Address key 1 has a group of 2 `lower` or `sub` keys.
+address 2 has a group of 3 sub keys, and those keys may have groups of sub keys , so on and so forth.
+using the address keys we can navigate to the proper data we want
+as i will show in the next example.
+In the next example i will show how to use address keys to navigate thru 
+a multi-dimension table. 
+]]--
+
+
+print("----------------");
+print("Example 9 tableD");
+
+print(tableD[1][2]); -- now you see i am using the table name and 2 keys to navigate with.
+print(tableD[1][1]);
+
+print(tableD[2][3]);
+print(tableD[2][1]);
+print(tableD[2][2]);
+
+print(tableD[3][2]);
+print(tableD[3][1]);
+print(tableD[3][3]);
+
+print(tableD[4][2]);
+print(tableD[4][1]);
+
+--[[
+So now during startup we should see
+Hello
+World
+How
+Are
+You
+I
+Am
+Fine
+And
+You?
+So now we have succesfuly navigated thru a multidimensional table 
+to produce a sequence of data to the console.
+But now i need to add 2 more entries of data to address key 4.
+]]--
+
+tableD[4][3] = "Are"; -- adding a new key with data.
+tableD[4][4] = "How"; -- adding a new key with data.
+
+
+print("----------------");
+print("Example 10 tableD");
+
+print(tableD[1][2]);
+print(tableD[1][1]);
+
+print(tableD[2][3]);
+print(tableD[2][1]);
+print(tableD[2][2]);
+
+print(tableD[3][2]);
+print(tableD[3][1]);
+print(tableD[3][3]);
+
+print(tableD[4][2]);
+print(tableD[4][4]); -- new entry
+print(tableD[4][3]); -- new entry
+print(tableD[4][1]);
+
+--[[
+You can also use variables for your address keys.
+In this next example I will use a variable to store data from an address key.
+Altho it is quicker to just access the table directly rather than calling the data
+from the table then storing it to a variable then calling the data from the variable.
+? seeing the ammount of time consumed by this action??
+but yes it can work like this just ms consuming.
+]]--
+
+
+print("----------------");
+print("Example 11 tableE");
+
+local tableE = {};
+
+tableE = {
+			[1] = 112233,
+			[2] = 445566,
+			[3] = 778899
+};
+
+local variableC = 2;
+
+print(tableE[variableC]);
+
+--[[
+Now we will see the data stored to address key assigned to variableC or 2.
+we will see:
+445566
+post during startup now.
+you can use variables for multi-dimentional tables also as long as you know the address keys of
+the data you want.
+]]--
+
+--[[
+Now I will make a 1 dimentional table with 3 keys but 1 of those keys will be multi-dementional with
+sub address keys.
+]]--
+
+local tableF = {};
+
+tableF = {
+			[1] = "Hello",
+			[2] = {
+					[1] = 101,
+					[2] = 202,
+					[3] = 303,
+					[4] = "there"
+			}, -- a comma is needed if we still have more address to populate with data.
+			[3] =  "World"
+};
+
+print("----------------");
+print("Example 12 tableF");
+
+print(tableF[1]);
+print(tableF[2][4]); -- address key 2 has sub address keys so we need to add the sub key we want to the address keys.
+print(tableF[3]);
+
+--[[
+Now we should see:
+Hello
+There
+World
+Post during startup.
+]]--
+
+--[[
+Now Keys can be strings also but not really recommended.
+String keys MUST be in quotes or the system will assume a variable is being used as a key.
+in the next example I will make a table with both string and numerical keys. the string key will have sub keys.
+]]--
+
+local tableG = {};
+
+tableG = {
+			["words"] = {
+							["hello"] = "Hello",
+							["world"] = "World"
+			},
+			[1] = 100,
+			[2] = 200,
+			[3] = 300
+};
+
+print("----------------");
+print("Example 13 tableG");
+
+print(tableG["words"]["hello"]);
+print(tableG["words"]["world"]);
+print(tableG[1]);
+print(tableG[3]);
+print(tableG[2]);
+
+--[[
+Now we will see:
+Hello
+World
+100
+300
+200
+post during startup.
+]]--
+
+--[[
+But what if I make a mistake in the address keys and `call` data from a non existing address?
+in this example we see what happens when we call for data from a non existing address key. tableG[4]
+]]--
+
+print("----------------");
+print("Example 14 tableG");
+
+print(tableG[4]);
+
+--[[
+Now we will see:
+nil
+]]--
+
+--[[
+What if i dont add the address key and just call the table?
+]]--
+
+print("----------------");
+print("Example 15 tableG");
+
+print(tableG);
+
+--[[
+Ok now we will see somthing different. we will see 'table:' plus a hex id code for that unique table.
+]]--
+
+--[[
+What if i dont add all the required address key's and just call a key that contains a group of keys?
+]]--
+
+print("----------------");
+print("Example 16 tableG");
+
+print(tableG["words"]);
+
+--[[
+again we will see somthing different. we will see 'table:' plus a hex id code for that unique table.
+So we now know using address keys we will recieve either  data, nil or a table id code.
+]]--
+
+--[[
+So now with this basic information, in this next example I will make a simple loop that will count from 0 to 5.
+]]--
+
+local tableH = {};
+
+tableH = {
+		[0] = 0,
+		[1] = 1,
+		[2] = 2,
+		[3] = 3,
+		[4] = 4,
+		[5] = 5
+};
+
+print("----------------");
+print("Example 17 tableH");
+
+	for countA = 0, 5 do
+		
+		print(tableH[countA]);
+		
+	end
+
+--[[
+Now we will make a simple ipairs loop.
+]]--
+
+print("----------------");
+print("Example 18 tableH");
+print("key","value");
+
+	for key, value in ipairs(tableH) do
+	
+			print(key, value);
+			
+	end
+
+--[[
+So now we see the address key and the data.
+Using `ipairs` loop allows you to loop thru any size table i.e. dynamic tables.
+plus it is the more used way to loop thru a table.
+but you can do a simple `for do end` loop dynamicly also , using the `#` sign at the start of the table and/or
+key's. this will return the table size or the max size of entries in the table address.
+]]--
+
+print("----------------");
+print("Example 19 tableH");
+
+	for countB = 0, #tableH do
+		
+		print(tableH[countB]);
+		
+	end
+
+--[[
+So now i will cause both loops to fail by using inconsistant or non sequential keys i.e. odd numbered keys only.
+It fails because for some reason the function that returns the size haults when it reaches the first non-existing 
+numerical key.
+]]--
+
+print("----------------");
+print("Example 20 tableI");
+
+local tableI = {};
+
+tableI = {
+		[1] = 0,
+		[3] = 1,
+		[5] = 2,
+		[7] = 3,
+		[9] = 4,
+		[11] = 5
+};
+
+print("table size:"..#tableI);
+print("key","value");
+
+	for key, value in ipairs(tableI) do
+	
+			print(key, value);
+			
+	end
+
+print("----------------");
+print("Example 21 tableI");
+
+	for countC = 1, #tableI do
+		
+		print(tableI[countC]);
+		
+	end
+
+--[[
+also using string key's will hault it instantly so it will return a value of 0.
+again pointing out how string key's cause more problems than solutions lol.
+]]--
+
+print("----------------");
+print("Example 22 tableJ");
+
+local tableJ = {};
+
+tableJ = {
+		["a"] = 0,
+		["c"] = 1,
+		["e"] = 2,
+		["g"] = 3,
+		["i"] = 4,
+		["k"] = 5
+};
+		
+print("table size:"..#tableJ);
+print("key","value");
+
+	for key, value in ipairs(tableJ) do
+	
+			print(key, value);
+			
+	end
+
+--[[
+But if we drop the `#` calling the `size` of the table and just use the larges numerical key
+as our limit for the loop we will then be able to loop thru an incomplete sequential numericaly keyed
+table. altho we will see nil's for the missing keys that get called during the loop.
+]]--
+
+print("----------------");
+print("Example 23 tableK");
+
+local tableK = {};
+
+tableK = {
+		[1] = 0,
+		[3] = 1,
+		[5] = 2,
+		[7] = 3,
+		[9] = 4,
+		[11] = 5
+};
+
+	for countC = 1, 11 do
+		
+		print(tableK[countC]);
+		
+	end
+
+--[[
+We can filter out the nil's we recieve when we call a non existant key with a simple if,then,end statement.
+]]--
+
+print("----------------");
+print("Example 24 tableK");
+
+	for countC = 1, 11 do
+		
+		if(tableK[countC])then -- if tableK[countC] exists then do stuff. if not, then dont proceed into the `if` statement.
+			print(tableK[countC]);
+		end
+	end
+
+--[[
+But if your not using loops and just the address key's then you can build some really
+crazy looking tables :rofl:
+]]--
+
+print("----------------");
+print("Example 25 tableL");
+
+local tableL = {};
+
+tableL = {
+		["work"] = {
+					["monthly"] = { 175643.36, 156349.67, 181581.21},
+					["costs"] = {
+								89394.50,
+								72358.91,
+								92365.28
+					};
+		};
+		[0] = "My dogs name is",
+		["dog_name"] = "Rex."
+};
+	
+print("calling data from address key [work][costs][2]");
+
+print(tableL["work"]["costs"][2]);
+
+print("calling all data from address key [work][monthly]");
+print("key","value");
+
+	for key, value in ipairs(tableL["work"]["monthly"]) do
+	
+			print(key, value);
+			
+	end
+
+
+print("calling data from address key [0] and [dog_name]");
+
+print(tableL[0].." "..tableL["dog_name"]);
+
+--[[
+So now we know we can make some custome tables but if we are going to be using loops , 
+its better to just use sequential numerical keys.
+]]--
+
+
+
+
+print("----------------");
+print("End Of Tutorial.");
+print("----------------");
