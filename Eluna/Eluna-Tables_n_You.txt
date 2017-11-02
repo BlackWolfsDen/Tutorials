@@ -125,7 +125,7 @@ then post them again.
 ]]--
 
 local variableA = "How";
-local variableB = "Are";
+local variableB = "Are"; 
 
 tableA[1] = variableA;
 tableA[3] = variableB;
