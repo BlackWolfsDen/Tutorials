@@ -5,6 +5,7 @@ By slp13at420/Grumbo/BlackWolf
 
 Thanks to Rochet2 for teaching me tables :)
 
+A Lua script for Eluna.
 
 What is a table? and how do I use them?
 
@@ -125,7 +126,7 @@ then post them again.
 ]]--
 
 local variableA = "How";
-local variableB = "Are"; 
+local variableB = "Are";
 
 tableA[1] = variableA;
 tableA[3] = variableB;
